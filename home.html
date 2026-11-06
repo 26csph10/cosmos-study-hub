@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cosmos Study Hub</title>
+  <style>
+#home {
+  text-align: center;
+  padding: 80px 20px;
+  /* A few small "stars" made with dots, on top of a dark blue-purple sky */
+  background:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(#9ecbff 1px, transparent 1px),
+    linear-gradient(#0b0d17, #1b1440);
+  background-size: 90px 90px, 140px 140px, 100% 100%;
+  background-position: 0 0, 40px 60px, 0 0;
+  min-height: 400px;
+}
+.planet {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 30px;
+  border-radius: 50%;
+  background: #f5b942;
+  box-shadow: 0 0 40px #f5b942;
+}
+#home h1 {
+  font-size: 40px;
+  margin: 0 0 10px;
+  text-shadow: 0 0 15px #9ecbff;
+}
+#home p {
+  color: #c8cde8;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+.cards {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.card {
+  display: inline-block;
+  width: 180px;
+  margin: 8px;
+  padding: 15px;
+  background: #141829;
+  border: 1px solid #2c3366;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.card:hover {
+  border-color: #f5b942;
+}
+  body {
+      background: #0b0d17;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    .logo {
+      font-family:Cooper;
+      color: #FFFFFF;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    .menu {
+      background: #141829;
+      padding: 15px;
+    }
+    .menu button {
+      background: none;
+      color: white;
+      border: none;
+      font-size: 16px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .page {
+      padding: 20px;
+    }
+    .box {
+      background: #141829;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+    input {
+      display: block;
+      padding: 8px;
+      margin-bottom: 10px;
+      width: 250px;
+    }
+    .btn {
+      background: #f5b942;
+      border: none;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+  </style>
+  </head>
+<body>
+<h1 class="logo">Cosmos</h1>
+<div class="menu">
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('tracker')">Tracker</button>
+    <button onclick="showPage('formulas')">Formulas</button>
+    <button onclick="showPage('sky')">Sky guide</button>
+    <button onclick="showPage('questions')">Questions</button>
+    <button onclick="showPage('login')">Log in</button>
+    <button onclick="showPage('register')">Register</button>
+    <span id="welcome"></span>
+  </div>
+  <div id="home" class="page">
+    <div class="planet"></div>
+    <h1>Welcome to Cosmos</h1>
+    <p>Everything for your physics study in one place.</p>
+    <div class="cards">
+      <div class="card" onclick="showPage('tracker')">Study tracker</div>
+      <div class="card" onclick="showPage('formulas')">Formulas</div>
+      <div class="card" onclick="showPage('sky')">Sky guide</div>
+      <div class="card" onclick="showPage('questions')">Exam questions</div>
+    </div>
+  </div>
+<div id="tracker" class="page">
+    <h1>Study tracker</h1>
+    <input id="topic" placeholder="Add a topic">
+    <button class="btn" onclick="addTopic()">Add</button>
+    <ul id="topicList"></ul>
+  </div>
+  <div id="formulas" class="page">
+    <h1>Formulas</h1>
+    <div class="box">Newton's second law: F = m × a</div>
+    <div class="box">Universal gravitation: F = G × m1 × m2 / r²</div>
+    <div class="box">Kinetic energy: KE = ½ × m × v²</div>
+    <div class="box">Mass–energy: E = m × c²</div>
+    <div class="box">Wave speed: v = f × λ</div>
+    <div class="box">Photon energy: E = h × f</div>
+    <div class="box">Escape velocity: v = √(2GM / r)</div>
+    <div class="box">Kepler's third law: T² ∝ a³</div>
+    </div>
+  <div id="sky" class="page">
+    <h1>Sky guide</h1>
+    <div class="box"><b>Orion:</b> Winter evenings. Look for the three belt stars in a line.</div>
+    <div class="box"><b>The Pleiades:</b> A tight cluster of blue stars, best Oct–Mar.</div>
+    <div class="box"><b>Jupiter:</b> Very bright, steady light. Binoculars show its moons.</div>
+    <div class="box"><b>The Moon:</b> Best detail near the light/dark edge.</div>
+  </div>
+  <div id="questions" class="page">
+    <h1>Exam questions</h1>
+    <div class="box">
+      <p><b>Q1.</b> A satellite orbits at radius r. If r doubles, what happens to gravitational force?</p>
+      <p><b>Answer:</b> It becomes ¼ (inverse-square law).</p>
+    </div>
+    <div class="box">
+      <p><b>Q2.</b> Why do stars twinkle but planets mostly don't?</p>
+      <p><b>Answer:</b> Stars are point sources, so the air shifts them more. Planets show a small disc.</p>
+    </div>
+    <div class="box">
+      <p><b>Q3.</b> What does a Hertzsprung–Russell diagram plot?</p>
+      <p><b>Answer:</b> Brightness of stars against their temperature.</p>
+    </div>
+  </div>
+  <div id="login" class="page">
+    <h1>Log in</h1>
+    <input id="loginEmail" placeholder="Email">
+    <input id="loginPassword" type="password" placeholder="Password">
+    <button class="btn" onclick="login()">Log in</button>
+    <p id="loginMessage"></p>
+  </div>
+  <div id="register" class="page">
+    <h1>Register</h1>
+    <input id="regEmail" placeholder="Email">
+    <input id="regPhone" type="tel" placeholder="Phone number">
+    <input id="regAge" type="number" min="5" max="120" placeholder="Age">
+    <input id="regPassword" type="password" placeholder="Password">
+    <button class="btn" onclick="register()">Register</button>
+    <p id="registerMessage"></p>
+  </div>
+   <script>
+    function showPage(id) {
+      const pages = document.getElementsByClassName("page");
+      for (let i = 0; i < pages.length; i++) {
+        pages[i].style.display = "none";
+      }
+      document.getElementById(id).style.display = "block";
+    }
+    function addTopic() {
+      const topic = document.getElementById("topic").value;
+      if (topic == "") return;
+      const item = document.createElement("li");
+      item.textContent = topic;
+      document.getElementById("topicList").appendChild(item);
+      document.getElementById("topic").value = "";
+    }
+   function register() {
+  const email = document.getElementById("regEmail").value;
+  const phone = document.getElementById("regPhone").value;
+  const age = document.getElementById("regAge").value;
+  const password = document.getElementById("regPassword").value;
+  const msg = document.getElementById("registerMessage");
+
+  if (email == "" || phone == "" || age == "" || password == "") {
+    msg.textContent = "Please fill in all boxes.";
+    return;
+  }
+  if (!/^[0-9+\-\s]{7,15}$/.test(phone)) {
+    msg.textContent = "Please enter a valid phone number.";
+    return;
+  }
+  if (age < 5 || age > 120) {
+    msg.textContent = "Please enter a valid age.";
+    return;
+  }
+
+  fetch("http://localhost:3001/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, phone, age: Number(age), password })
+  })
+    .then(function (res) {
+      if (res.ok) {
+        msg.textContent = "Registered! You can now log in.";
+      } else {
+        msg.textContent = "Registration failed. Check the terminal.";
+      }
+    })
+    .catch(function (err) {
+      msg.textContent = "Could not reach the server.";
+    });
+}
+    function login() {
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+
+  fetch("/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  })
+    .then(function (res) {
+      if (res.ok) {
+        document.getElementById("welcome").textContent = "Hi, " + email;
+        showPage("home");
+      } else {
+        document.getElementById("loginMessage").textContent = "Wrong email or password.";
+      }
+    })
+    .catch(function () {
+      document.getElementById("loginMessage").textContent = "Could not reach the server.";
+    });
+}
+    showPage("home");
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<script>
+    // Shortcut to get what's typed in a box
+    function val(id) {
+      return document.getElementById(id).value;
+    }
+
+    // Show one page and hide the others
+    function showPage(id) {
+      document.querySelectorAll(".page").forEach(p => p.style.display = "none");
+      document.getElementById(id).style.display = "block";
+    }
+
+    function addTopic() {
+      if (val("topic") == "") return;
+      const item = document.createElement("li");
+      item.textContent = val("topic");
+      document.getElementById("topicList").appendChild(item);
+      document.getElementById("topic").value = "";
+    }
+
+    // Send data to the server and get its reply
+    async function send(url, data) {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      return { ok: res.ok, ...(await res.json()) };
+    }
+
+    async function register() {
+      const msg = document.getElementById("registerMessage");
+      const reply = await send("/api/register", {
+        email: val("regEmail"),
+        phone: val("regPhone"),
+        age: Number(val("regAge")),
+        password: val("regPassword")
+      });
+      msg.textContent = reply.message;
+    }
+
+    async function login() {
+      const msg = document.getElementById("loginMessage");
+      const reply = await send("/api/login", {
+        email: val("loginEmail"),
+        password: val("loginPassword")
+      });
+      if (reply.ok) {
+        document.getElementById("welcome").textContent = "Hi, " + reply.email;
+        showPage("home");
+      } else {
+        msg.textContent = reply.message;
+      }
+    }
+
+    showPage("home");
+  </script>
